@@ -1,0 +1,455 @@
+<!Doctybe html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Abel Chirchir | Tech Innovator & Creative Studio</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Swiper JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fefefe;
+      color: #1e1e2f;
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-header h2 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1E3C72, #2A5298);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* Navigation */
+    nav {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 18px 0;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #0b2b44, #1b4a7a);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1e293b;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2a5298;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    /* Hero Section with Motion Video */
+    .hero {
+      background: linear-gradient(125deg, #0a0f1f 0%, #111827 100%);
+      padding: 60px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content {
+      flex: 1;
+      color: white;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .highlight {
+      background: linear-gradient(120deg, #60a5fa, #34d399);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-video {
+      flex: 1;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.5);
+      border: 2px solid rgba(96,165,250,0.3);
+    }
+    .hero-video video {
+      width: 100%;
+      display: block;
+      border-radius: 28px;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-3px);
+    }
+
+    /* Portfolio Cards */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .portfolio-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 30px -12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-8px);
+    }
+    .portfolio-img {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .portfolio-info {
+      padding: 24px;
+    }
+    .tech-badge {
+      display: inline-block;
+      background: #eef2ff;
+      padding: 4px 12px;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    /* Modal for Tech Info */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 40px;
+      padding: 32px;
+      position: relative;
+      animation: fadeInUp 0.3s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .close-modal {
+      position: absolute;
+      right: 24px;
+      top: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-top: 20px;
+    }
+    .service-card {
+      background: white;
+      padding: 32px 20px;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 12px 24px -12px rgba(0,0,0,0.08);
+      transition: 0.2s;
+    }
+    .service-card i {
+      font-size: 2.5rem;
+      color: #2563eb;
+      margin-bottom: 16px;
+    }
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 56px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 48px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 1.5rem;
+      margin-top: 16px;
+    }
+    .social-icons a {
+      color: #cbd5e1;
+      transition: 0.2s;
+    }
+    .social-icons a:hover { color: white; transform: translateY(-3px); }
+    @media (max-width: 900px) {
+      .nav-links { display: none; width: 100%; flex-direction: column; text-align: center; gap: 16px; margin-top: 20px; }
+      .nav-links.show { display: flex; }
+      .menu-toggle { display: block; }
+      .hero-content h1 { font-size: 2.2rem; }
+    }
+    .swiper { padding: 30px 0 50px; }
+    .swiper-slide {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-container">
+    <div class="logo"><i class="fas fa-microchip"></i> Abel Chirchir</div>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolios">Portfolios</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero with Motion Video -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <h1>Abel Chirchir <span class="highlight">Tech Alchemist</span></h1>
+      <p>Transforming ideas into immersive digital realities. AI, Web3, and beyond — I craft the future of tech.</p>
+      <div style="margin-top: 28px;">
+        <a href="#services" class="btn-primary">Explore Services <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div style="margin-top: 24px; display: flex; gap: 24px;">
+        <span><i class="fab fa-react"></i> React/Next</span>
+        <span><i class="fab fa-python"></i> AI/ML</span>
+        <span><i class="fas fa-cloud"></i> Cloud Native</span>
+      </div>
+    </div>
+    <div class="hero-video">
+      <video autoplay loop muted playsinline>
+        <source src="/storage/emulated/0/Android/data/com.fazil.htmleditor/files/Documents/Hospital system /media/videos/VideoCook_20260402_213217076.mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section: Website Design, Development, App Dev, Graphics Design -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <h2>What I Deliver</h2>
+      <p>End-to-end tech solutions & creative craftsmanship</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <i class="fas fa-paintbrush"></i>
+        <h3>Website Design</h3>
+        <p>Modern, responsive, and conversion-focused UI/UX that tells your brand story.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-code"></i>
+        <h3>Development</h3>
+        <p>Full-stack web apps, e-commerce, and custom CMS with blazing performance.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>App Development</h3>
+        <p>Cross-platform mobile apps (iOS/Android) using React Native & Flutter.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-vector-square"></i>
+        <h3>Graphics Design</h3>
+        <p>Logo design, branding kits, social media assets & motion graphics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Section with interactive tech info on button click -->
+<section id="portfolios">
+  <div class="container">
+    <div class="section-header">
+      <h2>Featured Tech Projects</h2>
+      <p>Click any card to dive deep into tech stack & insights</p>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid">
+      <!-- dynamic cards from JS matching the image style: Lumina AI, EcoPulse, Nexus Studio + more -->
+    </div>
+  </div>
+</section>
+
+<!-- Partners Section (Sliding) -->
+<div style="background:#f8fafc; padding:40px 0; overflow:hidden;">
+  <div style="text-align:center; margin-bottom:20px;"><span style="font-weight:600;">Trusted by tech pioneers</span></div>
+  <div class="marquee" style="display:flex; gap:64px; animation: scroll 22s linear infinite; width:max-content;">
+    <div style="display:flex; gap:64px;"><i class="fab fa-google"></i><i class="fab fa-microsoft"></i><i class="fab fa-openai"></i><i class="fab fa-github"></i><i class="fab fa-aws"></i></div>
+    <div style="display:flex; gap:64px;"><i class="fab fa-google"></i><i class="fab fa-microsoft"></i><i class="fab fa-openai"></i><i class="fab fa-github"></i><i class="fab fa-aws"></i></div>
+  </div>
+</div>
+
+<!-- Sliding Pictures (10 slides) -->
+<section style="padding: 60px 0;">
+  <div class="container"><div class="section-header"><h2>Tech Gallery</h2><p>10 glimpses into my creative universe</p></div></div>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper" id="swiperWrapper"></div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
+
+<!-- CTA + About Contact -->
+<section id="contact" style="background: linear-gradient(110deg, #0f172a, #1e293b); color:white; border-radius: 48px; margin: 40px auto; width: calc(100% - 64px); max-width: 1200px;">
+  <div style="padding: 64px 48px; text-align: center;">
+    <h3><i class="fas fa-envelope"></i> Let's Build Something Epic</h3>
+    <p>Have a project in mind? Reach out for website design, app dev, or creative collab.</p>
+    <div style="margin-top: 28px;">
+      <a href="kiplagatabel912@gmail.com.com" style="background: white; color:#1e293b; padding:12px 32px; border-radius:60px; text-decoration:none; font-weight:600;">kiplagatabel912@gmail.com</a>
+      <p style="margin-top: 24px;"><i class="fas fa-phone-alt"></i> (+254)797738059 | based in Eldoret / remote</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer with social icons -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Abel Chirchir</h4><p>Innovative tech architect & creative director. Pushing boundaries in AI, design, and full-stack development.</p><div class="social-icons"><a href="#"><i class="fab fa-github"></i></a><a href="#"><i class="fab fa-linkedin"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i
+          class="fab fa-dribbble"></i></a></div></div>
+      <div class="footer-col"><h4>Explore</h4><p>Portfolio</p><p>Services</p><p>Blog</p><p>Contact</p></div>
+      <div class="footer-col"><h4>Contact Info</h4><p><i class="fas fa-map-marker-alt"></i> Eldoret, NYC</p><p><i class="fas fa-envelope"></i> kiplagatabel912@gmail.com</p><p><i class="fab fa-whatsapp"></i> (+254)797738059</p></div>
+      <div class="footer-col"><h4>Newsletter</h4><p>Get weekly tech insights.</p><input type="email" placeholder="Your email" style="padding:12px; border-radius:60px; width:100%; border:none;"><button style="margin-top:8px; background:#2563eb; border:none; padding:10px; border-radius:60px; width:100%; color:white;">Subscribe</button></div>
+    </div>
+    <div class="copyright" style="text-align:center; margin-top:48px;">© 2026 Abel Chirchir — Where tech meets creativity. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Modal for Tech Details -->
+<div id="techModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2 id="modalTitle">Tech Stack</h2>
+    <p id="modalDescription">Loading...</p>
+    <div id="modalTechList" style="margin-top: 20px;"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // Portfolio data with detailed tech information for each project
+  const portfolioData = [
+    { title: "Lumina AI", category: "AI Dashboard", icon: "fas fa-brain", bg: "#e6f0fa", techInfo: "To keep you informed and in control throughout the web design process, you’ll receive access to your own private client dashboard. This simple, password-protected area shows the real-time status of your project, including which phase we’re in (Discovery, Design, Development, Testing, or Launch), a calendar of upcoming milestones and feedback deadlines, and a direct link to preview your in-progress website. You can also download project documents like your proposal, content checklists, and invoices, plus send messages or approve designs without digging through emails. The dashboard is designed to replace confusing email threads and spreadsheets, giving you one place to see what’s done, what’s next, and what we need from you—so your website stays on schedule and within budget.Tech: Python, TensorFlow, React, D3.js | Features: Real-time inference, predictive analytics, custom ML models, and interactive data visualization. Built with scalable microservices architecture." },
+    { title: "App Development", category: "Sustainability App", icon: "fas fa-leaf", bg: "#e1f5e8", techInfo: "Our application portfolio showcases real-world software solutions we’ve built for clients across retail, healthcare, and field services — each designed to solve a specific business challenge and deliver measurable results. From a real-time inventory management system that reduced stockouts by 32% for a mid-sized retail chain, to a HIPAA-compliant patient portal that cut missed appointments by nearly half for a multi-location clinic, and a cross-platform mobile inspection app that eliminated paper forms and accelerated reporting by 70%, every project in our portfolio reflects a client-first development process. We don’t just write code; we partner with you to understand your operations, user needs, and growth goals, then build scalable, secure, and intuitive applications that drive efficiency, revenue, or both. Whether you need a custom web app, a mobile tool for your field team, or a complete digital transformation, our proven track record gives you confidence — and our transparent approach gives you peace of mind." },
+    { title: "Graphics Designs", category: "Creative Agency", icon: "fas fa-palette", bg: "#fef3e2", techInfo: "I provide professional graphic design services for businesses and entrepreneurs who need branding that actually works. From custom logos and full brand identities to print materials and social media graphics, I create clean, memorable designs tailored to your audience. Every project follows a simple process: we start with a brief, I deliver concepts within days, and you get final files ready to use anywhere — whether it’s a business card, a website, or an Instagram post. No confusing jargon, no endless revisions, just practical design that helps you look polished and professional." },
+    { title: "Abel Fintech Web", category: "Banking Suite", icon: "fas fa-chart-line", bg: "#e9ecf7", techInfo: "1. Our Web Design Process We follow a proven, transparent process:· Discovery: Understand your business, audience, and goals.· Wireframing: Create a layout blueprint (no design yet).· Design Mockup: Present a visual concept for your approval.· Development: Build a functional, responsive website.· Testing: Check for bugs, speed, and usability.· Launch & Training: Go live and show you how to manage content.2. What’s Included in a Modern Website· Responsive Design – Works on phones, tablets, and desktops.· CMS (Content Management System) – You can update text, images, and blog posts easily.· SEO Setup – Meta tags, headings, and fast loading for better search ranking.· Contact Forms – With spam protection and email notifications.· Security Basics – SSL certificate (HTTPS) and backups.· Analytics Integration – Google Analytics or similar to track visitors.3. Your Responsibilities as the ClientTo keep the project on track, please provide:· Final text content (copy) in a document (no placeholder lorem ipsum).· High-resolution images (your own or properly licensed stock photos).· Brand assets (logo, colors, fonts).· Timely feedback on designs and revisions.· Hosting & domain access (or let us recommend a provider).4. Timeline & Revisions· Typical project: 4–8 weeks from start to launch.· Revisions: 2 rounds of design changes included (additional rounds may be billed hourly).· Delays: Missing client feedback is the #1 reason for delays.5. Ongoing Maintenance (Optional) We recommend a maintenance plan for: · Software/plugin updates · Monthly backups. · Uptime monitoring. · Small content changes (e.g., 1 hour/month). · Security scans. 6. Common Questions Q: Will my website rank #1 on Google? A: We build SEO-ready sites, but ranking depends on competition, keywords, and ongoing marketing. We can’t guarantee positions. Q: Can I add an online store later A: Yes, if we build on a scalable platform (like WordPress/WooCommerce or Shopify). Q: Who owns the website after launch? A: You own the design and content. We may retain a credit link unless removed via a separate fee. Q: What if I need a major change after launch A: That’s considered new work. We’ll provide a separate estimate." }
+  ];
+  
+  const portfolioGrid = document.getElementById("portfolioGrid");
+  portfolioData.forEach(project => {
+    const card = document.createElement("div");
+    card.className = "portfolio-card";
+    card.innerHTML = `
+      <div class="portfolio-img" style="background: ${project.bg};">
+        <i class="${project.icon}" style="font-size: 3rem;"></i>
+      </div>
+      <div class="portfolio-info">
+        <h3>${project.title}</h3>
+        <p>${project.category}</p>
+        <button class="tech-detail-btn" style="background:#2563eb; color:white; border:none; padding:8px 18px; border-radius:40px; margin-top:16px; cursor:pointer;">🔍 View Tech Details</button>
+      </div>
+    `;
+    const btn = card.querySelector(".tech-detail-btn");
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openTechModal(project.title, project.techInfo);
